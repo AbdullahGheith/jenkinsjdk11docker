@@ -10,5 +10,5 @@ Contains:
 # How to run:
 
 ```console
-docker run -p 8080:8080 --priviliged xabdullahx/rpi-jenkinsjdk11docker
+docker run -p 8080:8080 --privileged xabdullahx/rpi-jenkinsjdk11docker
 ```

@@ -28,11 +28,7 @@ RUN echo '{"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}' > /e
 
 ADD docker.sh /
 
-ADD ubuntuJenkins.sh /
-
 RUN chmod +x docker.sh
-
-RUN chmod +x ubuntuJenkins.sh
 
 RUN add-apt-repository ppa:openjdk-r/ppa
 

@@ -3,6 +3,7 @@ FROM ubuntu:xenial-20210429
 ENV DOCKER_HOST=tcp://127.0.0.1:2375
 ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-armhf
 ENV JENKINS_HOME=/var/lib/jenkins
+#ENV DOCKERHOST=127.0.0.1
 
 ADD docker.sh /
 
@@ -30,12 +31,14 @@ RUN rm /lib/systemd/system/docker.service
 
 RUN mv /lib/systemd/system/docker.service.changed /lib/systemd/system/docker.service
 
-RUN echo '{"hosts": ["tcp://0.0.0.0:2375", "unix:///var/run/docker.sock"]}' > /etc/docker/daemon.json
+RUN echo '{"hosts": ["tcp://127.0.0.1:2375", "unix:///var/run/docker.sock"]}' > /etc/docker/daemon.json
 
 RUN chown jenkins:jenkins -R /var/lib/jenkins/
 
 RUN update-ca-certificates -f
 
 ADD cacerts /etc/ssl/certs/java/cacerts
+
+VOLUME ["/var/lib/jenkins/"]
 
 ENTRYPOINT ["./docker.sh"]
